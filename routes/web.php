@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return redirect()->route('tasks.index');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::resource('tasks', TaskController::class)->parameters(['tasks' => 'id'])->middleware('auth');
+
+Route::resource('projects', ProjectController::class)->parameters(['projects' => 'id'])->middleware('auth');
