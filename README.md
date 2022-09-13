@@ -29,7 +29,7 @@ Create Database & Set config file(.env)
     `php artisan migrate`
 
     'npm install'
-    'npm run dev'
+    'php artisan serve'
 
 
 ## License
